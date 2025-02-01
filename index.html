@@ -15,6 +15,7 @@
       text-align: center;
     }
     
+    
     /* Header with Logo */
     header {
       display: flex;
@@ -54,8 +55,7 @@
       display: inline-block;
     }
     
-    .button:hover {
-     .button {
+    .button {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -63,6 +63,7 @@
     transform: scale(1.05);
     box-shadow: 0 0 10px rgba(255, 255, 0, 0.8);
 }
+
     
     /* Footer Styles */
     footer {
@@ -166,12 +167,12 @@
 <body>
   <!-- Header with Logo -->
   <header>
-    <!-- Replace "logo.png" with your logo path -->
-    <img src="logo.png.webp" alt="ResumeFit Logo" />
-  </header>
-  <hr style="border: 1px solid white; margin-top: 30px; margin-bottom: 10px;">
-  
+    <img src="logo.png.webp" alt="ResumeFit Logo" style="height: 120px;">
+</header>
+<hr style="border: 1px solid white; margin-top: 30px; margin-bottom: 10px;">
+
   <!-- Placeholder Presentation Section -->
+  <!-- Canva Presentation Section -->
 <div style="position: relative; width: 80%; height: 0; padding-top: 60%; margin: 0 auto; box-shadow: 0 2px 8px 0 rgba(63,69,81,0.16); margin-top: 20px; margin-bottom: 20px; overflow: hidden; border-radius: 8px;">
   <iframe loading="lazy" style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; border: none;" 
     src="https://www.canva.com/design/DAGd4DqKdVM/kdASf5eSNmPSQZZRUxUl5g/view?embed" allowfullscreen="allowfullscreen" allow="fullscreen">
@@ -179,11 +180,16 @@
 </div>
 <a href="https://www.canva.com/design/DAGd4DqKdVM/kdASf5eSNmPSQZZRUxUl5g/view?utm_content=DAGd4DqKdVM&utm_campaign=designshare&utm_medium=embeds&utm_source=link" target="_blank" rel="noopener">ResumeFit</a>
 
+  
+  
+  <!-- Buttons Section -->
   <div class="button-container">
     <!-- Button to open the modal form -->
     <button id="openModal" class="button">Join Waiting List</button>
+    <span style="color: white; font-size: 16px; margin: 0 10px;">and</span>
     <a href="gift.pdf" download class="button">Grab Your Free PDF Gift</a>
-  </div>
+</div>
+
   
   <!-- Modal Form -->
   <div id="modal" class="modal">
@@ -239,11 +245,11 @@
     </div>
   </div>
   
-  <!-- Footer Section -->
- <footer>
+  <footer>
     <span style="color: rgb(146, 146, 7); font-size: 16px;">Contact Us: </span>
     <span style="color: rgb(161, 161, 7); font-size: 16px;">resumefit.cloud@gmail.com</span>
   </footer>
+  
   <!-- JavaScript for Modal and Conditional Question -->
   <script>
     // Modal functionality
