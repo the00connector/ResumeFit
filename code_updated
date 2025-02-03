@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ResumeFit Landing Page</title>
+  <style>
+    /* Global Styles */
+    body {
+      margin: 0;
+      padding: 0;
+      background-color: #000;  /* Black background */
+      color: #fff;             /* White text for contrast */
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+    
+    /* Header with Logo */
+    header {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 20px;
+      position: relative;
+    }
+
+    header img {
+      height: 50px;
+      width: auto;
+      animation: bounce 2s infinite; /* Bouncing effect */
+    }
+
+    /* Bouncing Animation */
+    @keyframes bounce {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    /* White line under the logo */
+    .header-line {
+      width: 100%;
+      height: 2px;
+      background-color: #fff;
+      position: absolute;
+      bottom: 0;
+    }
+    
+    /* Presentation Section (Placeholder for presentation) */
+    .presentation {
+      margin: 20px auto;
+      max-width: 800px;
+    }
+    
+    /* Buttons Container */
+    .button-container {
+      margin: 20px auto;
+    }
+    
+    /* Button Styles */
+    .button {
+      background-color: #FFD700; /* Yellow */
+      border: none;
+      color: #000;
+      padding: 15px 30px;
+      font-size: 1em;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+    
+    .button:hover {
+      background-color: #FFC107;
+    }
+    
+    /* Footer Styles */
+    footer {
+      margin-top: 30px;
+      padding: 20px;
+      font-size: 0.9em;
+      background-color: #111;
+    }
+    
+    footer a {
+      color: #FFD700;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+    
+    footer a:hover {
+      text-decoration: underline;
+    }
+    
+    /* Modal Styles */
+    .modal {
+      display: none; /* Hidden by default */
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.8); /* Black background with opacity */
+    }
+    
+    .modal-content {
+      background-color: #222;
+      margin: 5% auto;
+      padding: 20px;
+      border: 1px solid #444;
+      width: 90%;
+      max-width: 500px;
+      border-radius: 8px;
+      position: relative;
+      color: #fff;
+    }
+    
+    /* Close Button */
+    .close {
+      color: #fff;
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 28px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    
+    .close:hover,
+    .close:focus {
+      color: #ccc;
+    }
+    
+    /* Form Field Styles */
+    .modal-content input[type="text"],
+    .modal-content input[type="email"],
+    .modal-content select {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px 0;
+      border: none;
+      border-radius: 4px;
+    }
+    
+    .modal-content label {
+      display: block;
+      margin: 10px 0 5px;
+      text-align: left;
+    }
+    
+    .modal-content button[type="submit"] {
+      background-color: #FFD700;
+      border: none;
+      color: #000;
+      padding: 12px 20px;
+      font-size: 1em;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+      margin-top: 10px;
+    }
+    
+    .modal-content button[type="submit"]:hover {
+      background-color: #FFC107;
+    }
+    
+    /* Hide conditional question by default */
+    #buyingMethodContainer {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header with Logo -->
+  <header>
+    <!-- Replace "logo.png" with your logo path -->
+    <img src="logo.jpg" alt="ResumeFit Logo" />
+    <div class="header-line"></div> <!-- White line under logo -->
+  </header>
+  
+  <!-- Placeholder Presentation Section -->
+<div class="presentation">
+    <!-- Embed your Canva presentation using the provided link -->
+    <iframe src="https://www.canva.com/design/DAGdyxVg1To/KAmTRFjdxvF2dRLzH48Rtw/view?utlId=h3640fb0251" 
+            width="100%" 
+            height="500" 
+            frameborder="0" 
+            allowfullscreen>
+    </iframe>
+  </div>
+  
+  
+  <!-- Buttons Section -->
+  <div class="button-container">
+    <!-- Button to open the modal form -->
+    <button id="openModal" class="button">Join The Waiting List</button>
+    <a href="freepdf.html" class="button">Grab Your Free PDF Gift</a>
+  </div>
+  
+  <!-- Modal Form -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Join the Waiting List</h2>
+      <form id="waitingListForm">
+        <!-- Personal Coordinates -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+        
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required />
+        
+        <!-- Questions with checkboxes -->
+        <label for="personalizedCV">Have you ever personalized your CV to a job description?</label>
+        <input type="checkbox" id="personalizedCV" name="personalizedCV" value="yes" /> Yes
+        <input type="checkbox" id="personalizedCVNo" name="personalizedCV" value="no" /> No
+        
+        <label for="moreInterviews">Do you see it as crucial to get more interviews?</label>
+        <input type="checkbox" id="moreInterviews" name="moreInterviews" value="yes" /> Yes
+        <input type="checkbox" id="moreInterviewsNo" name="moreInterviews" value="no" /> No
+        
+        <label for="payForTool">Would you pay to use a tool that personalizes your CV?</label>
+        <input type="checkbox" id="payForTool" name="payForTool" value="yes" /> Yes
+        <input type="checkbox" id="payForToolNo" name="payForTool" value="no" /> No
+        
+        <label for="cvImprovements">Would you be interested in receiving tips to improve your CV?</label>
+        <input type="checkbox" id="cvImprovements" name="cvImprovements" value="yes" /> Yes
+        <input type="checkbox" id="cvImprovementsNo" name="cvImprovements" value="no" /> No
+        
+        <!-- Conditional Question -->
+        <div id="buyingMethodContainer">
+          <label for="buyingMethod">Which way of buying is better?</label>
+          <select id="buyingMethod" name="buyingMethod">
+            <option value="">Select an option</option>
+            <option value="subscription">Monthly Subscription</option>
+            <option value="oneTime">One-Time Purchase</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <button type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+  <!-- Footer Section -->
+  <footer>
+    <a href="policy.html">Policy</a> | 
+    <a href="contact.html">Contact Us</a>
+  </footer>
+  *****************************************************************************************************************************************************************************************************************
+  <!-- Firebase SDK -->
+  <script type="module">
+    // Import the functions you need from the Firebase SDKs
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+    import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "AIzaSyC15uKE6gPTyMajl0WbV_yuY2zjvFrGuxo",
+      authDomain: "cv-fit.firebaseapp.com",
+      databaseURL: "https://cv-fit-default-rtdb.firebaseio.com",
+      projectId: "cv-fit",
+      storageBucket: "cv-fit.firebasestorage.app",
+      messagingSenderId: "383221752687",
+      appId: "1:383221752687:web:964cdedd3b56cfece5be9a",
+      measurementId: "G-KXYRJSW6WQ",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+
+    // Initialize Firestore
+    const db = getFirestore(app);
+******************************************************************************************************************************************************************************************************************
+    // Modal functionality
+    const openModalBtn = document.getElementById('openModal');
+    const modal = document.getElementById('modal');
+    const closeModalSpan = document.getElementById('closeModal');
+    
+    openModalBtn.addEventListener('click', () => {
+      modal.style.display = 'block';
+    });
+    
+    closeModalSpan.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+    
+    // Close modal when clicking outside of the modal content
+    window.addEventListener('click', (event) => {
+      if (event.target === modal) {
+        modal.style.display = 'none';
+      }
+    });
+    
+    // Show/hide conditional question based on "Will you pay" answer
+    const payForToolSelect = document.getElementById('payForTool');
+    const buyingMethodContainer = document.getElementById('buyingMethodContainer');
+    
+    payForToolSelect.addEventListener('change', (event) => {
+      if (event.target.value === 'yes') {
+        buyingMethodContainer.style.display = 'block';
+      } else {
+        buyingMethodContainer.style.display = 'none';
+      }
+    });
+    
+    // Form submission handling
+    const waitingListForm = document.getElementById('waitingListForm');
+    waitingListForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      
+      // Collect form data
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        personalizedCV: document.querySelector('input[name="personalizedCV"]:checked')?.value,
+        moreInterviews: document.querySelector('input[name="moreInterviews"]:checked')?.value,
+        payForTool: document.querySelector('input[name="payForTool"]:checked')?.value,
+        cvImprovements: document.querySelector('input[name="cvImprovements"]:checked')?.value,
+        buyingMethod: document.getElementById('buyingMethod').value || null, // Optional field
+      };
+      
+      try {
+        // Add form data to Firestore
+        const docRef = await addDoc(collection(db, "waitingList"), formData);
+        console.log("Document written with ID: ", docRef.id);
+        
+        // Show success message
+        alert('Form submitted! Thank you for joining the waiting list.');
+        
+        // Reset form and hide modal
+        modal.style.display = 'none';
+        waitingListForm.reset();
+        buyingMethodContainer.style.display = 'none';
+      } catch (error) {
+        console.error("Error adding document: ", error);
+        alert('An error occurred. Please try again.');
+      }
+    });
+  </script>
+</body>
+</html>
