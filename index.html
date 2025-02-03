@@ -185,7 +185,6 @@
 <a href="https:&#x2F;&#x2F;www.canva.com&#x2F;design&#x2F;DAGd_ElAamQ&#x2F;bAYRIeuv68qvdR_w8uaGjQ&#x2F;view?utm_content=DAGd_ElAamQ&amp;utm_campaign=designshare&amp;utm_medium=embeds&amp;utm_source=link" target="_blank" rel="noopener">ResumeFit</a>
 
   
-  
   <!-- Buttons Section -->
   <div class="button-container">
     <!-- Button to open the modal form -->
@@ -207,24 +206,24 @@
         
         <label for="phone">Phone Number:</label>
         <input type="tel" id="phone" name="phone" required />
-
+        
         <!-- Questions -->
         <label for="personalizedCV">Have you ever personalized your CV to a job description?</label>
-        <select id="personalizedCV" name="personalizedCV" required>
+        <select id="question1" name="personalizedCV" required>
           <option value="">Select an option</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
         
         <label for="moreInterviews">Do you see it as crucial to get more interviews?</label>
-        <select id="moreInterviews" name="moreInterviews" required>
+        <select id="question2" name="moreInterviews" required>
           <option value="">Select an option</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
         </select>
         
         <label for="payForTool">Will you pay to use a tool that does all that process for you?</label>
-        <select id="payForTool" name="payForTool" required>
+        <select id="question3" name="payForTool" required>
           <option value="">Select an option</option>
           <option value="yes">Yes</option>
           <option value="no">No</option>
@@ -249,7 +248,8 @@
   
   <footer>
     
-  <div style="text-align: center; margin-bottom: 20px;">
+   
+      <div style="text-align: center; margin-bottom: 20px;">
           <img src="hack.jpeg" alt="Hackathon Winners" style="width: 60%; max-width: 500px; border-radius: 10px;">
           <p style="font-size: 20px; font-weight: bold; color: white; margin-top: 10px;">
             "We are a team of passionate students who won the Dauphine Hackathon with our innovative solution.
@@ -258,8 +258,7 @@
             one that we hope will help you on yours."
           </p>
       </div>
-    
-      
+
   </footer>
   
     <span style="color: rgb(146, 146, 7); font-size: 16px;">Contact Us: </span>
@@ -289,7 +288,7 @@
     });
     
     // Show/hide conditional question based on "Will you pay" answer
-    const payForToolSelect = document.getElementById('payForTool');
+    const payForToolSelect = document.getElementById('question3');
     const buyingMethodContainer = document.getElementById('buyingMethodContainer');
     
     payForToolSelect.addEventListener('change', (event) => {
@@ -300,17 +299,65 @@
       }
     });
     
-    // Example form submission handling (this can be customized)
-    const waitingListForm = document.getElementById('waitingListForm');
-    waitingListForm.addEventListener('submit', (e) => {
-      e.preventDefault();
-      // You can collect and process the form data here
-      alert('Form submitted! Thank you for joining the waiting list.');
-      // Optionally, hide the modal after submission
-      modal.style.display = 'none';
-      waitingListForm.reset();
-      buyingMethodContainer.style.display = 'none';
-    });
+   
+    
   </script>
+<script type="module">
+  // Import Firebase SDK
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-app.js";
+  import { getDatabase, ref, push, set } from "https://www.gstatic.com/firebasejs/11.2.0/firebase-database.js";
+
+  // Your Firebase configuration (from Firebase Console)
+  const firebaseConfig = {
+    apiKey: "AIzaSyB1oZYX1g-rAsxKaQQKJswZC6y14rjdySI",
+    authDomain: "resumefitdb.firebaseapp.com",
+    databaseURL: "https://resumefitdb-default-rtdb.europe-west1.firebasedatabase.app",
+    projectId: "resumefitdb",
+    storageBucket: "resumefitdb.firebasestorage.app",
+    messagingSenderId: "193041314373",
+    appId: "1:193041314373:web:f302386712514a0c05292c"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const database = getDatabase(app);
+
+  // Handle Form Submission
+  document.getElementById("waitingListForm").addEventListener("submit", function(event) {
+    event.preventDefault(); // Prevent page reload
+
+    // Get form values
+    const name = document.getElementById("name").value;
+    const phone = document.getElementById("phone").value;
+    const q1 = document.getElementById("question1").value;
+    const q2 = document.getElementById("question2").value;
+    const q3 = document.getElementById("question3").value;
+   
+
+
+    // Reference the database
+    const submissionsRef = ref(database, "submissions"); 
+    const newSubmissionRef = push(submissionsRef);
+
+    // Save data to Firebase
+    set(newSubmissionRef, {
+      name: name,
+      phone: phone,
+      answers: {
+        question1: q1,
+        question2: q2,
+        question3: q3
+      }
+    }).then(() => {
+      alert("Thanks for your answer! We will give it to you when it's ready.");
+      document.getElementById("waitingListForm").reset(); // Clear form after submission
+      modal.style.display = 'none';
+    }).catch(error => {
+      console.error("Error saving data:", error);
+    });
+  });
+</script>
+
 </body>
 </html>
+
