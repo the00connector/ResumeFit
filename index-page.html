@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Landing Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="light-mode">
+  <!-- Dark/Light Mode Toggle -->
+  <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+  <!-- Logo on Top Left -->
+  <div class="logo-container">
+    <img src="logo.jpg" alt="Logo" class="logo">
+    <div class="white-line"></div>
+  </div>
+
+  <!-- Centered Container -->
+  <div class="content-container">
+    <h1>Welcome to Our Platform</h1>
+
+    <!-- Canva iFrame -->
+    <iframe
+      src="https://www.canva.com/design/DAGdyxVg1To/KAmTRFjdxvF2dRLzH48Rtw/view?utm_content=DAGdyxVg1To&utm_campaign=designshare&utm_medium=link&utm_source=viewer"
+      width="100%"
+      height="500"
+      style="border: none; margin: 2rem 0;"
+      allowfullscreen
+    ></iframe>
+
+    <!-- Buttons -->
+    <div class="buttons">
+      <button class="btn" id="join-waiting-list">Join the Waiting List</button>
+      <button class="btn" id="grab-gift">Grab Your Free Gift</button>
+    </div>
+  </div>
+
+  <!-- Form Modal (Hidden by Default) -->
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <span class="close" id="closeModal">&times;</span>
+      <h2>Join the Waiting List</h2>
+      <form id="waitingListForm">
+        <!-- Personal Coordinates -->
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+        
+        <label for="phone">Phone Number:</label>
+        <input type="tel" id="phone" name="phone" required />
+        
+        <!-- Questions -->
+        <label for="personalizedCV">Have you ever personalized your CV to a job description?</label>
+        <select id="question1" name="personalizedCV" required>
+          <option value="">Select an option</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        
+        <label for="moreInterviews">Do you see it as crucial to get more interviews?</label>
+        <select id="question2" name="moreInterviews" required>
+          <option value="">Select an option</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        
+        <label for="payForTool">Will you pay to use a tool that does all that process for you?</label>
+        <select id="question3" name="payForTool" required>
+          <option value="">Select an option</option>
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+        
+        <!-- Conditional Question -->
+        <div id="buyingMethodContainer" class="hidden">
+          <label for="buyingMethod">Which way of buying is better?</label>
+          <select id="buyingMethod" name="buyingMethod">
+            <option value="">Select an option</option>
+            <option value="subscription">Monthly Subscription</option>
+            <option value="oneTime">One-Time Purchase</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+        
+        <!-- Submit Button -->
+        <button type="submit" class="btn">Submit</button>
+      </form>
+    </div>
+  </div>
+  
+
+  <!-- Submission Message -->
+  <div id="submission-message" class="hidden">
+    <p>Thank you for joining the waiting list!</p>
+  </div>
+
+  <script src="firebase.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
